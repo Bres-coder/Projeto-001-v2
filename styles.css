@@ -1,0 +1,185 @@
+
+html {
+    --bg: #091921;
+    --bg-panel: #ffffff;
+}
+
+*, *::after, *::before{
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.relogio{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid var(--bg);
+    box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+                inset 0 -15px 15px rgba(255, 255, 255, 0.05),
+                0 15px 15px rgba(0, 0, 0, 0.3),
+                inset 0 15px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.relogio .numeros {
+    --rotacao: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotacao));
+    color: var(--bg-panel);
+    font-size: 1.5em;
+}
+
+.relogio .num1 { --rotacao: 30deg;}
+.relogio .num2 { --rotacao: 60deg;}
+.relogio .num3 { --rotacao: 90deg;}
+.relogio .num4 { --rotacao: 120deg;}
+.relogio .num5 { --rotacao: 150deg;}
+.relogio .num6 { --rotacao: 180deg;}
+.relogio .num7 { --rotacao: 210deg;}
+.relogio .num8 { --rotacao: 240deg;}
+.relogio .num9 { --rotacao: 270deg;}
+.relogio .num10 { --rotacao: 300deg;}
+.relogio .num11 { --rotacao: 330deg;}
+
+
+.relogio .data {
+    --rotacao: 0;
+    position: absolute;
+    margin-top: 190px;
+    margin-left: 180px;
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    transform: rotate(var(--rotacao));
+    color: var(--bg-panel);
+    font-size: 1em;
+    background-color: var(--bg);
+    border: 1px solid;
+    border-color: var(--bg-panel);
+    border-radius: 10px;
+    
+
+}
+.relogio .data {--rotacao: 47deg;}
+
+.relogio .data.mes {
+    --rotacao: 0;
+    position: absolute;
+    left: -105px;
+    border-radius: 10px;
+    transform: rotate(var(--rotacao));
+    color: var(--bg-panel);
+    font-size: 1em;
+    background-color: var(--bg);
+    border: 1px solid;
+    border-color: var(--bg-panel);
+}
+.relogio .data.mes {--rotacao: -47deg;}
+
+.relogio::after{
+    content: '';
+    position: absolute;
+    background-color: var(--bg-panel);
+    z-index: 51;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.relogio .ponteiro {
+    --rotacao: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    border: 1 px solid var(--bg-panel);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform-origin: bottom;
+    z-index: 50;
+    transform: translateX(-50%) rotate(calc(var(--rotacao)*1deg));
+
+}
+
+.relogio .ponteiro.Hora{
+    width: 7px;
+    height: 28%;
+    background-color: #ff105e;
+
+}
+.relogio .ponteiro.Min{
+    width: 5px;
+    height: 38%;
+    background-color:#ff105e;
+    
+}
+.relogio .ponteiro.Sec{
+    width: 2px;
+    height: 45%;
+    background-color: var(--bg-panel);
+}
+
+.container {
+    position: absolute;
+    margin-top: 35%;
+}
+
+.toggle{
+    margin-top: 10px;
+}
+
+input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: whitesmoke;
+    float: right;
+    border-radius: 100px;
+    position: relative;
+}
+
+label::after{
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--bg);
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked + label {
+    background-color: var(--bg-panel);
+}
+
+input:checked + label::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 45px;
+}
